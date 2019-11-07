@@ -1,0 +1,85 @@
+<style>
+    table 
+    {
+        width: auto;
+        font: 17px Calibri;
+    }
+    table, th, td 
+    {
+        border: solid 1px #DDD;
+        border-collapse: collapse;
+        padding: 2px 3px;
+        text-align: center;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+
+
+        <div ng-app="myApp" ng-controller="cfgController">
+
+            <input type="text" class="form-control" placeholder="Czego szukasz?" ng-model="wyszukiwarka">
+
+            <table class="list">
+                <tr>
+                    <th></th>
+                    <th>
+                        <button ng-click="sortBy('titel')">Titel</button>
+                        <span class="sortorder" ng-show="propertyName === 'titel'" ng-class="{reverse: reverse}"></span>
+                    </th>
+                    <th>
+                        <button ng-click="sortBy('z_categ1_de_de')">Hauptkategorie</button>
+                        <span class="sortorder" ng-show="propertyName === 'z_categ1_de_de'" ng-class="{reverse: reverse}"></span>
+                    </th>
+                    <th>
+                        <button ng-click="sortBy('z_categ2_de_de')">Kategorie</button>
+                        <span class="sortorder" ng-show="propertyName === 'z_categ2_de_de'" ng-class="{reverse: reverse}"></span>
+                    </th>
+                    <th>
+                        <button ng-click="sortBy('z_index')">Index</button>
+                        <span class="sortorder" ng-show="propertyName === 'z_index'" ng-class="{reverse: reverse}"></span>
+                    </th>
+                    <th>
+                        <button ng-click="sortBy('z_nummer')">SESAM Nr.</button>
+                        <span class="sortorder" ng-show="propertyName === 'z_nummer'" ng-class="{reverse: reverse}"></span>
+                    </th>
+                </tr>
+
+                <tr ng-repeat="documents in list | filter : wyszukiwarka | orderBy:propertyName:reverse">
+                    <td>
+                        <button ng-if="documents.expanded" ng-click="documents.expanded = false">-</button>
+                        <button ng-if="!documents.expanded" ng-click="documents.expanded = true">+</button>
+                    </td>
+                    <td>{{documents.titel}}</td>
+                    <td>{{documents.z_categ1_de_de}}</td>
+                    <td>{{documents.z_categ2_de_de}}</td>
+                    <td>{{documents.z_index}}</td>
+                    <td>{{documents.z_nummer}}</td>
+                    <td ng-if="documents.expanded" colspan="3">'download'</td>
+                </tr>
+
+
+
+            </table>
+        </div>
+
+
+    </div>
+</div>
+
+<!--
+<h1>About us page.</h1>
+ <p>This is simple angular ng-view and ng-route tutorial to demonstrate single page web app development.</p>
+ <p>
+   This is executed because of this code.
+   <pre>
+     <code>
+       .when('/about',{
+             templateURl: 'about.html'
+       })
+     </code>
+   </pre>
+ </p>
+ <p><a class="btn btn-primary btn-lg" href="#" role="button">Read tutorial</a></p>
+ //-->

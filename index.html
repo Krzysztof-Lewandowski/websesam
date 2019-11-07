@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Single page web app using Angularjs</title>
+<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
+ <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+  <script src="script.js"></script>
+  
+   <link href="css/simple-sidebar.css" rel="stylesheet">
+  
+  <style>
+	 /* The sidebar menu */
+	.sidenav {
+	  height: 100%; /* Full-height: remove this if you want "auto" height */
+	  width: 400px; /* Set the width of the sidebar */
+	  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
+	  z-index: 1; /* Stay on top */
+	  top: 0; /* Stay at the top */
+	  left: 0;
+	  background-color: #fff; 
+	  overflow-x: hidden; /* Disable horizontal scroll */
+	  padding-top: 20px;
+	}
+
+	/* The navigation menu links */
+	.sidenav a {
+	  padding: 6px 8px 6px 16px;
+	  text-decoration: none;
+	  font-size: 25px;
+	  color: #818181;
+	  display: block;
+	}
+
+	/* When you mouse over the navigation links, change their color */
+	.sidenav a:hover {
+	  color: #f1f1f1;
+	}
+
+	/* Style page content */
+	.main {
+	  margin-left: 160px; /* Same as the width of the sidebar */
+	  padding: 0px 10px;
+	}
+
+	/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
+	@media screen and (max-height: 450px) {
+	  .sidenav {padding-top: 15px;}
+	  .sidenav a {font-size: 18px;}
+	}
+  </style>
+  
+  
+  
+  
+  <style>
+		 /* Style all input fields */
+	input {
+	  width: 100%;
+	  padding: 12px;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  box-sizing: border-box;
+	  margin-top: 6px;
+	  margin-bottom: 16px;
+	}
+
+	/* Style the submit button */
+	input[type=submit] {
+	  background-color: #4CAF50;
+	  color: white;
+	}
+
+	/* Style the container for inputs */
+	.container {
+	  background-color: #f1f1f1;
+	  padding: 20px;
+	}
+
+	/* The message box is shown when the user clicks on the password field */
+	#message {
+	  display:none;
+	  background: #f1f1f1;
+	  color: #000;
+	  position: relative;
+	  padding: 20px;
+	  margin-top: 10px;
+	}
+
+	#message p {
+	  padding: 10px 35px;
+	  font-size: 18px;
+	}
+
+	/* Add a green text color and a checkmark when the requirements are right */
+	.valid {
+	  color: green;
+	}
+
+	.valid:before {
+	  position: relative;
+	  left: -35px;
+	  content: "&#10004;";
+	}
+
+	/* Add a red text color and an "x" icon when the requirements are wrong */
+	.invalid {
+	  color: red;
+	}
+
+	.invalid:before {
+	  position: relative;
+	  left: -35px;
+	  content: "&#10006;";
+	} 
+  </style>
+  
+  
+  
+</head>
+<body ng-app="single-page-app">
+  <div ng-controller="cfgController">
+  <div>
+  <nav class="navbar navbar-inverse" role="navigation" style="padding-left:430px;">
+         <ul class="nav navbar-nav">
+        <li class="active"><a href="#/">Home<span class="sr-only">(current)</span></a></li>
+        <li><a href="#/login">Documents</a></li>
+      </ul>
+</nav>
+</div>
+
+<!-- Sidebar -->
+    <div class="bg-light border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading">SESAM Database</div>
+      <div class="list-group list-group-flush">
+        <a href="#/table" class="list-group-item list-group-item-action bg-light">Cost Objects (CO)</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Cost Requests (CR)</a>
+        <a href="#" class="list-group-item list-group-item-action bg-light">Engineering Change Request (ECR)</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+	
+	<!-- Login Modal
+	<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					  <div class="modal-dialog" role="document">
+						<div class="modal-content">						  
+						  
+						  <div class="modal-body">
+							<div class="form-group">
+							
+								<div class="container">
+									<form action="/action_page.php">
+									
+									<label>Podaj swój login:</label>
+									<input type="text" class="form-control" ng-model="username" id="usrname" name="usrname" required><br>
+									
+									<label>Podaj swoje hasło:</label>
+									<input type="text" class="form-control" ng-model="password" id="psw" name="psw" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
+																	
+									
+								</div>
+								
+							</div>
+						  </div>
+						  
+						  <div class="modal-footer">
+						  
+							<input type="submit" value="Submit">
+														
+							
+						  </div>
+						</div>
+					  </div>
+					</div> -->
+
+      <div ng-view class="container-fluid"></div>
+	  
+    </div>
+
+<!--
+<div class="sidenav" >
+  <ul>
+	<li>Documents pending for signature</li>
+	<li>Information Security Awareness Material</li>
+	<ul>
+		 <li>Information Security Guidebook</li>
+		 <li>Posters</li>
+	</ul>
+	<li>ISMS Documents</li>
+	<ul>
+		<li>a. Supporting ISMS Documents</li>
+		<li>b. Security Policy</li>
+		<li>c. Asset Management</li>
+		<li>d. Access Control</li>
+		<li>e. Cryptography</li>
+		<li>f. Physical and Environmental Security</li>
+		<li>g. Operations Security</li>
+		<li>h. Communications Security</li>
+		<li>i. Information System Acquisition, Development and Maintenance</li>
+		<li>j. Supplier Relationships</li>
+		<li>k. Information Security Incident Management</li>
+		<li>l. Business Continuity Management</li>
+		<li>m. Compliance</li>
+	</ul>
+	<li>ISMS Records</li>
+	<ul>
+		<li>Business Continuity Records</li>		
+		<li>Certification Audit Records</li>
+		<li>Continual Improvement and Corrective actions</li>
+		<li>Customer Audits / TISAX Assessment</li>
+		<li>External Assessment Reports</li>
+		<li>Internal Audit Records</li>
+		<li>IS incidents records</li>
+		<li>ISMS Calendar</li>
+		<li>ISMS Competences Assessment Records</li>
+		<li>ISMS Effectiveness Measurement Records</li>
+		<li>Management Commitment</li>
+		<li>Management Review Records</li>
+		<li>Physical Security Assessment</li>
+		<li>Protocol Visits</li>
+		<li>Risk Assessment Records</li>
+		<li>Suppliers Information Security Audits</li>
+		<li>SWS Documents & Guidelines</li>
+		<li>System Diagnosis</li>
+		<li>Third Party Network Access/Confidentiality Agreements</li>
+		<li>VDA Self Assessment</li>
+		<li>Vulnerablity Assessment</li>
+		<li>VW Documents - IS Requirements</li>
+		<li>Zoning Concept Records</li>
+	</ul>
+</ul>
+</div>
+-->
+
+  <br/>
+ 
+ <!-- <div ng-view class="jumbotron"></div> -->
+  </div>
+</body>
+</html>
